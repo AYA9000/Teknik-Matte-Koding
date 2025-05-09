@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potenser Quiz</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            border: 2px solid blue;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: blue;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .option {
+            display: block;
+            margin: 10px 0;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">←</button>
+    <h1>Potenser</h1>
+    <h2>Välj mellan Quiz eller Övningar</h2>
+    <button onclick="startQuiz()">Quiz</button>
+    <button onclick="startExercises()">Övningar</button>
+
+    <div id="quiz" class="hidden">
+        <h2>Quiz: Räkna med Potenser</h2>
+        <div id="questions"></div>
+        <button onclick="submitAnswers('quiz')">Skicka In Svar</button>
+    </div>
+
+    <div id="exercises" class="hidden">
+        <h2>Övningar: Räkna med Potenser</h2>
+        <div id="exerciseQuestions"></div>
+        <button onclick="submitAnswers('exercises')">Skicka In Svar</button>
+    </div>
+
+    <div id="result" class="hidden">
+        <h2>Dina Resultat</h2>
+        <p id="score"></p>
+        <button onclick="restart()">Börja Om</button>
+    </div>
+
+    <script>
+        const quizQuestions = [
+            { question: "2^3 =", answer: 8 },
+            { question: "3^2 =", answer: 9 },
+            { question: "4^1 =", answer: 4 },
+            { question: "5^0 =", answer: 1 },
+            { question: "2^5 =", answer: 32 }
+        ];
+
+        const exerciseQuestions = [
+            { 
+                question: "Vad är 6^2?", 
+                options: [34, 36, 38], 
+                answer: 36 
+            },
+            { 
+                question: "Vad är 3^3?", 
+                options: [26, 27, 28], 
+                answer: 27 
+            },
+            { 
+                question: "Vad är 10^1?", 
+                options: [9, 10, 11], 
+                answer: 10 
+            },
+            { 
+                question: "Vad är 1^5?", 
+                options: [1, 2, 3], 
+                answer: 1 
+            },
+            { 
+                question: "Vad är 4^2?", 
+                options: [14, 15, 16], 
+                answer: 16 
+            }
+        ];
+
+        function startQuiz() {
+            document.getElementById('quiz').classList.remove('hidden');
+            document.getElementById('exercises').classList.add('hidden');
+            document.getElementById('questions').innerHTML = quizQuestions.map((q, index) => `
+                <p>${index + 1}. ${q.question} <input type="number" id="quizAnswer${index}"></p>
+            `).join('');
+        }
+
+        function startExercises() {
+            document.getElementById('exercises').classList.remove('hidden');
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('exerciseQuestions').innerHTML = exerciseQuestions.map((q, index) => `
+                <p>${index + 1}. ${q.question}</p>
+                ${q.options.map((option) => `
+                    <label class="option">
+                        <input type="radio" name="exercise${index}" value="${option}"> ${option}
+                    </label>
+                `).join('')}
+            `).join('');
+        }
+
+        function submitAnswers(type) {
+            let score = 0;
+            const questions = type === 'quiz' ? quizQuestions : exerciseQuestions;
+
+            questions.forEach((q, index) => { 
+                if (type === 'quiz') {
+                    const userAnswer = document.getElementById(`quizAnswer${index}`).value;
+                    if (parseInt(userAnswer) === q.answer) {
+                        score++;
+                    }
+                } else {
+                    const selectedOption = document.querySelector(`input[name="exercise${index}"]:checked`);
+                    if (selectedOption && parseInt(selectedOption.value) === q.answer) {
+                        score++;
+                    }
+                }
+            });
+
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('exercises').classList.add('hidden');
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('score').innerText = `Du fick ${score} av ${questions.length} rätt.`;
+        }
+
+        function restart() {
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('exercises').classList.add('hidden');
+        }
+
+        function goBack() {
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('exercises').classList.add('hidden');
+            document.getElementById('result').classList.add('hidden');
+           
+            window.location.href = "index.html"; 
+        }
+    </script>
+</body>
+</html>

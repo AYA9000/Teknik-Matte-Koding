@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sannolikhetsövningar</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            border: 2px solid blue;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: blue;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .option {
+            display: block;
+            margin: 10px 0;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-button" onclick="goBack()">←</button>
+
+    <h1>Sannolikhetsövningar</h1>
+
+    <form id="quiz">
+        <div class="exercise">
+            <div class="question">1. Vad är sannolikheten att få en sexa på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q1" value="1"> A) 1/6</label>
+                <label class="option"><input type="radio" name="q1" value="0"> B) 1/4</label>
+                <label class="option"><input type="radio" name="q1" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">2. Om du drar ett kort från en kortlek, vad är sannolikheten att det är ett rött kort?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q2" value="1"> A) 1/2</label>
+                <label class="option"><input type="radio" name="q2" value="0"> B) 1/4</label>
+                <label class="option"><input type="radio" name="q2" value="0"> C) 1/3</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">3. Vad är sannolikheten att få ett jämnt tal på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q3" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q3" value="0"> B) 1/2</label>
+                <label class="option"><input type="radio" name="q3" value="0"> C) 1/6</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">4. Vad är sannolikheten att få en klöver när du drar ett kort?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q4" value="1"> A) 1/4</label>
+                <label class="option"><input type="radio" name="q4" value="0"> B) 1/13</label>
+                <label class="option"><input type="radio" name="q4" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">5. Om du kastar två tärningar, vad är sannolikheten att summan blir 7?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q5" value="1"> A) 1/6</label>
+                <label class="option"><input type="radio" name="q5" value="0"> B) 1/12</label>
+                <label class="option"><input type="radio" name="q5" value="0"> C) 1/36</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">6. Vad är sannolikheten att få en trea eller högre på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q6" value="1"> A) 1/2</label>
+                <label class="option"><input type="radio" name="q6" value="0"> B) 1/3</label>
+                <label class="option"><input type="radio" name="q6" value="0"> C) 1/4</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">7. Vad är sannolikheten att få ett ess i poker?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q7" value="1"> A) 4/52</label>
+                <label class="option"><input type="radio" name="q7" value="0"> B) 1/52</label>
+                <label class="option"><input type="radio" name="q7" value="0"> C) 1/13</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">8. Vad är sannolikheten att få ett hjärter om du drar ett kort?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q8" value="1"> A) 1/4</label>
+                <label class="option"><input type="radio" name="q8" value="0"> B) 1/13</label>
+                <label class="option"><input type="radio" name="q8" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">9. Vad är sannolikheten att få en tärning som visar ett tal mindre än 3?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q9" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q9" value="0"> B) 1/6</label>
+                <label class="option"><input type="radio" name="q9" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">10. Om du kastar en tärning, vad är sannolikheten att få ett tal som är delbart med 3?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q10" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q10" value="0"> B) 1/6</label>
+                <label class="option"><input type="radio" name="q10" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">11. Vad är sannolikheten att få en svart kort i en kortlek?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q11" value="1"> A) 1/2</label>
+                <label class="option"><input type="radio" name="q11" value="0"> B) 1/4</label>
+                <label class="option"><input type="radio" name="q11" value="0"> C) 1/3</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">12. Vad är sannolikheten att få ett tal som är högre än 4 på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q12" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q12" value="0"> B) 1/2</label>
+                <label class="option"><input type="radio" name="q12" value="0"> C) 1/6</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">13. Vad är sannolikheten att dra ett kort som inte är klöver?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q13" value="1"> A) 3/4</label>
+                <label class="option"><input type="radio" name="q13" value="0"> B) 1/4</label>
+                <label class="option"><input type="radio" name="q13" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">14. Vad är sannolikheten att få en 1:a eller 2:a på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q14" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q14" value="0"> B) 1/2</label>
+                <label class="option"><input type="radio" name="q14" value="0"> C) 1/6</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">15. Vad är sannolikheten att få ett tal som är jämnt på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q15" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q15" value="0"> B) 1/2</label>
+                <label class="option"><input type="radio" name="q15" value="0"> C) 1/6</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">16. Vad är sannolikheten att få en 5:a på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q16" value="1"> A) 1/6</label>
+                <label class="option"><input type="radio" name="q16" value="0"> B) 1/4</label>
+                <label class="option"><input type="radio" name="q16" value="0"> C) 1/2</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">17. Vad är sannolikheten att dra en kung från en kortlek?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q17" value="1"> A) 4/52</label>
+                <label class="option"><input type="radio" name="q17" value="0"> B) 1/52</label>
+                <label class="option"><input type="radio" name="q17" value="0"> C) 1/13</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">18. Vad är sannolikheten att få en 6:a eller 1:a på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q18" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q18" value="0"> B) 1/2</label>
+                <label class="option"><input type="radio" name="q18" value="0"> C) 1/6</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">19. Vad är sannolikheten att få ett kort som är en dam?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q19" value="1"> A) 4/52</label>
+                <label class="option"><input type="radio" name="q19" value="0"> B) 1/52</label>
+                <label class="option"><input type="radio" name="q19" value="0"> C) 1/13</label>
+            </div>
+        </div>
+        <div class="exercise">
+            <div class="question">20. Vad är sannolikheten att få en 3:a eller 4:a på en tärning?</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="q20" value="1"> A) 1/3</label>
+                <label class="option"><input type="radio" name="q20" value="0"> B) 1/6</label>
+                <label class="option"><input type="radio" name="q20" value="0"> C) 1/2</label>
+            </div>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Kontrollera svar</button>
+    </form>
+
+    <div id="result" class="hidden"></div>
+    <button id="restart" class="hidden" onclick="restartQuiz()">Börja om</button>
+
+    <script>
+        function checkAnswers() {
+            const totalQuestions = 20;
+            let score = 0;
+            for (let i = 1; i <= totalQuestions; i++) {
+                const answer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (answer) {
+                    score += parseInt(answer.value);
+                }
+            }
+            document.getElementById('result').innerText = `Du fick ${score} av ${totalQuestions} rätt!`;
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('restart').classList.remove('hidden');
+        }
+
+        function restartQuiz() {
+            document.getElementById('quiz').reset();
+            document.getElementById('result').innerText = '';
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('restart').classList.add('hidden');
+        }
+
+        function goBack() {
+            window.location.href = "index.html"; 
+        }
+    </script>
+
+</body>
+</html>
